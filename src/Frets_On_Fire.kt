@@ -23,11 +23,11 @@ https://codeforces.com/problemset/problem/1119/D
 
 fun main() {
     //number of strings
-    //val n = readLine()
+    val n = readLine().toString().toInt() - 1
     val s = readLine()!!.trim().split(" ")
     val listS = ArrayList<BigInteger>()
-    for (item in s) {
-        listS.add(item.toBigInteger())
+    for (i in 0..n) {
+        listS.add(s[i].toBigInteger())
     }
     val distListS = listS.distinct()
     val q: Int = readLine()!!.toInt()
