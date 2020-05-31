@@ -1,4 +1,5 @@
-import kotlin.math.floor
+import kotlin.math.ceil
+import kotlin.math.min
 import kotlin.math.sqrt
 
 /**
@@ -18,16 +19,21 @@ fun main() {
 }
 
 fun buyShovels(n: Int, k: Int) {
-    val limit = floor(sqrt(n.toFloat())).toInt()
-
-    var divisor = -1
-    for (i in 1..limit) {
-        if (n % i == 0 && n/i <= k) {
-            divisor = i
-            break
+    if (n <= k) {
+        println("1")
+        return
+    }
+    val sqrt = sqrt(n.toFloat()).toInt()
+    var divisor = n
+    for (i in 1..sqrt) {
+        if (n % i == 0) {
+            val m = n/i
+            if (m <= k) {
+                divisor = min(divisor, i)
+            } else if (i <= k) {
+                divisor = min(divisor, m)
+            }
         }
     }
-    val result = if (divisor == -1) n else divisor
-    println(result)
-
+    println(divisor)
 }
